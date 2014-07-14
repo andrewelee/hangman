@@ -77,7 +77,6 @@ class HumanPlayer
 		end
 	end
 
-
 end
 
 class ComputerPlayer
@@ -127,36 +126,38 @@ class ComputerPlayer
 		@dictionary.each do |word|
 			word.each_char do |letter|
 				letters[letter] = 0 unless letters.include?(letter)
-        		letters[letter] += 1
-        	end
-        end
+        letters[letter] += 1
+      end
+    end
 
-        @guessed_letters.each do |l|
+    @guessed_letters.each do |l|
 			letters.delete(l) if letters.include?(l)
 		end
 
-        max = letters.values.max
-       	letter = letters.key(max)
-    end
+    max = letters.values.max
+    letter = letters.key(max)
+  end
 
-    def update(positions, letter)
-    	@dictionary = @dictionary.select {|word| valid_word?(word,positions,letter)}
-    end
+  def update(positions, letter)
+   	@dictionary = @dictionary.select {|word| valid_word?(word,positions,letter)}
+  end
 
-    def valid_word?(word, positions, letter)
-    	
-    	if positions == []
-    		return false if word.include?(letter)
-    	else
+  def valid_word?(word, positions, letter)
+  	
+  	if positions == []
+  		return false if word.include?(letter)
+  	else
 
-	    	return false unless word.include?(letter)
+	    return false unless word.include?(letter)
 
-	    	letters = word.split("")
+	    letters = word.split("")
 
-	    	letters.each_with_index do |let, index|
-	    		return false if let == letter && !positions.include?(index)
-	    	end
-    	end
-    	return true
-    end
+	    letters.each_with_index do |let, index|
+	    	return false if let == letter && !positions.include?(index)
+	    end
+
+  	end
+  	return true
+  end
+  
 end
