@@ -8,7 +8,7 @@ class Hangman
 	def play
 		turn = 1
 		max_turns = 10
-		display_string = ""
+		display_string = "" 
 		
 		secret_word_length = @checking_player.pick_secret_word
 		@checking_player.receive_secret_length(secret_word_length)
